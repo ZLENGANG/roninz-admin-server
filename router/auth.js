@@ -10,18 +10,29 @@ const token = {
 
 router.post("/login", (req, res) => {
   if (["admin", "editor"].includes(req.body?.name)) {
-    res.send({
-      code: 0,
-      data: {
-        token: token[req.body.name],
-      },
-    });
+    setTimeout(() => {
+      res.send({
+        code: 0,
+        data: {
+          token: token[req.body.name],
+        },
+      });
+    }, 2000);
   } else {
     res.send({
       code: -1,
       message: "没有此用户",
     });
   }
+});
+
+router.post("/refreshToken", (req, res) => {
+  res.send({
+    code: 0,
+    data: {
+      token: 'zlzllzl',
+    },
+  });
 });
 
 module.exports = router;
