@@ -1,0 +1,32 @@
+stages: # 分段
+  - install
+  - build
+  - deploy
+
+cache: # 缓存
+  paths:
+    - node_modules
+    - dist
+
+install-job:
+  tags:
+    - vite-vue3-ts-pinia-1108
+  stage: install
+  script:
+    - npm -v
+    - npm config set registry https://registry.npmmirror.com
+    - npm install
+  only:
+    - master
+
+deploy-job:
+  tags:
+    - vite-vue3-ts-pinia-1108
+  stage: deploy
+  script:
+    - sshpass -p $PASSWORD scp -r ./* $CUSTOM_USERNAME@$CUSTOM_IP:/usr/local/node-project/roninz-admin-server
+    - pm2 restart roninz-admin-server
+  only:
+    - master
+
+
