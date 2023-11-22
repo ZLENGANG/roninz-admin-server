@@ -36,7 +36,7 @@ router.post("/refreshToken", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.send('ok');
+  res.send('ok666');
 });
 
 module.exports = router;
