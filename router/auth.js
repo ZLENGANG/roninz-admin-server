@@ -35,6 +35,19 @@ router.post("/refreshToken", (req, res) => {
   });
 });
 
+router.post("/getUserInfo", (req, res) => {
+  res.send({
+    code: 0,
+    data: {
+      avatar: "https://static.isme.top/images/avatar.jpg",
+      email: "Ronnie@123.com",
+      id: 1,
+      name: "大脸怪(admin)",
+      role: ['admin']
+    },
+  });
+});
+
 router.get("/", (req, res) => {
   res.send('ok666');
 });
